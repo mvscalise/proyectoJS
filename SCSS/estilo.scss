@@ -1,0 +1,296 @@
+@import "colores";
+@import "header";
+@import "footer";
+
+* {
+	font-family: 'Bellota Text', cursive;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+h1{
+	font-family: 'Rancho';
+	color: $color-roscuro1;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+p{
+	color: $color-gris;
+	font-size: 18px;
+}
+
+h2 {
+	color: $color-roscuro1;
+	font-family: 'Rancho';
+	font-weight: bold;
+	font-size: 36px;
+}
+
+h3{
+	color: $color-roscuro1;
+	font-weight: bold;
+	font-size: 24px;
+}
+
+
+.main {
+	background-color:$color-crema;
+	padding: 16px;
+}
+
+/* Sección presentación index */
+
+.info {
+	text-align: center;
+	font-weight: bold;
+	padding-top: 3%;
+}
+
+.info h2 {
+	margin: 0% 0% 2% 5%;
+	font-size: 40px;
+}
+
+.info p {
+	margin: 0% 5% 1% 5%;
+	text-align: justify;
+}
+
+.portada {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	padding-top: 5%;
+	padding-bottom: 5%
+}
+
+
+/* Sección Sobre nosotros */
+
+.nosotros {
+	background-image: url(fondo/nosotros.png);
+	width: 1fr;
+	height: 1fr;
+	display: grid;
+	grid-template-columns: 70% 30%;
+	grid-template-rows: 100%;
+	padding-bottom: 10%;
+	padding-top: 1%
+}
+
+
+.nosotros h2 {
+	margin: 0% 0% 2% 5%;
+	font-size: 40px;
+}
+
+.nosotros p {
+	margin: 0% 5% 1% 5%;
+	text-align: justify;
+}
+
+.chef	{
+	padding-left: 60px; 
+	img {
+		width: 60%;
+		padding-top: 60px;
+		animation-name: chefcito;
+  		animation-iteration-count: infinite;
+   		animation-duration: 2s;
+   		animation-delay: 0s;
+	}
+}
+
+@keyframes chefcito {
+
+	0%  { transform: rotate(10deg) }
+	25% { transform: skew(10deg)  }
+	50% { transform: rotate(10deg) }
+}
+
+
+@media (max-width: 780px) {
+	.nosotros {
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 80% 20%;
+		align-items: center;
+	}
+	.chef img{
+		width: 30%;
+		margin-left: 30%;
+		padding-bottom: 10%;
+	}
+}
+
+
+/* Sección pedido */ 
+
+%PagRecetas {
+	color: $color-gris;
+	list-style: none;
+	font-family: 'Rancho';
+	font-size: 30px;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+
+.recetas-d {
+	@extend %PagRecetas;
+	background-color: $color-dulce;
+}
+
+
+.padre	{
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 18% 38% 38%;
+}
+
+.hijo1 {
+	padding: 20px 10px 50px 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h2 {
+		text-align: center;
+		margin-top: 20px;
+	}
+}	
+
+.producto {
+	display: grid;
+	position: relative;
+	grid-template-columns: 100%;
+	grid-template-rows: 10% 50% 10% 20%; 
+	align-items: center;
+
+	h2 {
+		text-align: center;
+		padding-top: 10px;
+	}
+
+	p {
+		text-align: center;
+	}
+}
+
+
+
+.botones {
+	display: flex;
+	flex-direction: row;
+	align-items: bottom;
+	padding: 10px;
+}
+
+.botones button {
+	margin: 10px;
+}
+
+#pedidoTotal{
+		margin-left: 1%;
+		padding: 5%;
+		border-color: $color-dulce;
+		background-color: $color-salado;
+		border-radius: 8px;
+	
+}
+
+#pedidoTotal:hover {
+	border-color: $color-naranja;
+}
+
+#bloquePedido {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+tr th {
+	color: $color-gris;
+	background-color: $color-roscuro1;
+	border-color: $color-crema;
+	padding: 5px;
+}
+
+tr td {
+	color: $color-gris;
+	background-color: $color-rclaro;
+	text-align: center;
+	padding: 5px;
+}
+
+#vaciar{
+	margin-left: 1%;
+	padding: 15%;
+	border-color: $color-salado;
+	background-color: $color-dulce;
+	border-radius: 8px;
+
+}
+
+
+
+/* Sección del formulario de contacto*/
+
+.contacto {
+	height: 1fr;
+	padding-bottom: 10%;
+	background-color: $color-crema;
+	background-image: url(fondo/fondo.png);
+	background-position: bottom;
+	background-repeat: repeat-x; 						
+}
+
+.contacto1 {
+	padding-top: 40px;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+
+.contacto2 {
+	padding-left: 5% 
+}
+
+
+.contacto3 {
+	padding-left: 5% 
+}
+	
+.contacto3 img {
+		width: 300px;
+		margin-right: 20px;	
+}
+
+.form {
+	color: $color-naranja;
+	background-color: $color-rclaro;
+}
+
+select, input, textarea {
+	color: $color-gris;
+	background-color: $color-crema;
+}
+
+.tipos {
+	background-color: $color-crema;
+}
+
+.boton {
+	margin-left: 1%;
+	margin-top: 2%;
+	padding: 1%;
+	border-color: $color-dulce;
+	background-color: $color-salado;
+	border-radius: 8px;
+}
+
+.boton:hover{
+	border-color: $color-naranja;
+}

@@ -1,0 +1,343 @@
+@charset "UTF-8";
+/* Seccion de navegacion y titulo de pagina */
+img {
+  width: 200px;
+  padding-top: 5px; }
+
+.header {
+  color: #FF9B93;
+  background-color: #FFF3B2;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: block;
+  background-color: #FFF3B2;
+  z-index: 99999;
+  padding-bottom: 5px; }
+
+.sticky + .main {
+  padding-top: 102px; }
+
+#titpag {
+  text-align: center; }
+
+#logo {
+  width: 200px; }
+
+.titulo {
+  display: flex;
+  flex-direction: row; }
+
+.texto {
+  width: 100%;
+  height: 160px;
+  margin-top: 40px; }
+
+#navbar {
+  overflow: hidden;
+  background-color: #FFF3B2;
+  z-index: 99999;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0px; }
+  .menu div {
+    list-style: none; }
+    .menu div a {
+      float: center;
+      display: block;
+      text-align: center;
+      padding-top: 20px;
+      text-decoration: none;
+      font-size: 17px;
+      padding-left: 5px; }
+
+/* Seccion pie de pagina */
+footer {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  color: #41584B;
+  font-size: 10px;
+  background-color: #FF9B93; }
+
+.rrss {
+  display: grid;
+  background-color: #FF9B93;
+  grid-template-areas: "face insta mail";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 100%;
+  justify-items: center; }
+  .rrss img {
+    width: 25%; }
+
+@media (max-width: 780px) {
+  .rrss {
+    display: grid;
+    background-color: #FF9B93;
+    grid-template-areas: "face" "insta" " mail";
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: start;
+    padding-left: 10%; } }
+
+.face, .insta, .mail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center; }
+  .face img, .insta img, .mail img {
+    width: 25%;
+    padding: 5%; }
+  .face p, .insta p, .mail p {
+    padding-top: 5%; }
+
+.face {
+  grid-area: face; }
+
+.insta {
+  grid-area: insta; }
+
+.mail {
+  grid-area: mail; }
+
+.derechos {
+  background-color: #FF9B93;
+  text-align: center; }
+
+* {
+  font-family: 'Bellota Text', cursive;
+  padding: 0px;
+  margin: 0px; }
+
+h1 {
+  font-family: 'Rancho';
+  color: #FF9B93;
+  font-weight: bold;
+  font-size: 50px; }
+
+p {
+  color: #41584B;
+  font-size: 18px; }
+
+h2 {
+  color: #FF9B93;
+  font-family: 'Rancho';
+  font-weight: bold;
+  font-size: 36px; }
+
+h3 {
+  color: #FF9B93;
+  font-weight: bold;
+  font-size: 24px; }
+
+.main {
+  background-color: #FFF3B2;
+  padding: 16px; }
+
+/* Sección presentación index */
+.info {
+  text-align: center;
+  font-weight: bold;
+  padding-top: 3%; }
+
+.info h2 {
+  margin: 0% 0% 2% 5%;
+  font-size: 40px; }
+
+.info p {
+  margin: 0% 5% 1% 5%;
+  text-align: justify; }
+
+.portada {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%; }
+
+/* Sección Sobre nosotros */
+.nosotros {
+  background-image: url(fondo/nosotros.png);
+  width: 1fr;
+  height: 1fr;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 100%;
+  padding-bottom: 10%;
+  padding-top: 1%; }
+
+.nosotros h2 {
+  margin: 0% 0% 2% 5%;
+  font-size: 40px; }
+
+.nosotros p {
+  margin: 0% 5% 1% 5%;
+  text-align: justify; }
+
+.chef {
+  padding-left: 60px; }
+  .chef img {
+    width: 60%;
+    padding-top: 60px;
+    animation-name: chefcito;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-delay: 0s; }
+
+@keyframes chefcito {
+  0% {
+    transform: rotate(10deg); }
+  25% {
+    transform: skew(10deg); }
+  50% {
+    transform: rotate(10deg); } }
+
+@media (max-width: 780px) {
+  .nosotros {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 80% 20%;
+    align-items: center; }
+  .chef img {
+    width: 30%;
+    margin-left: 30%;
+    padding-bottom: 10%; } }
+
+/* Sección pedido */
+.recetas-d {
+  color: #41584B;
+  list-style: none;
+  font-family: 'Rancho';
+  font-size: 30px;
+  text-align: center;
+  padding-bottom: 10px; }
+
+.recetas-d {
+  background-color: #fccca9; }
+
+.padre {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 18% 38% 38%; }
+
+.hijo1 {
+  padding: 20px 10px 50px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .hijo1 h2 {
+    text-align: center;
+    margin-top: 20px; }
+
+.producto {
+  display: grid;
+  position: relative;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 50% 10% 20%;
+  align-items: center; }
+  .producto h2 {
+    text-align: center;
+    padding-top: 10px; }
+  .producto p {
+    text-align: center; }
+
+.botones {
+  display: flex;
+  flex-direction: row;
+  align-items: bottom;
+  padding: 10px; }
+
+.botones button {
+  margin: 10px; }
+
+#pedidoTotal {
+  margin-left: 1%;
+  padding: 5%;
+  border-color: #fccca9;
+  background-color: #fcd7ac;
+  border-radius: 8px; }
+
+#pedidoTotal:hover {
+  border-color: #FF9A00; }
+
+#bloquePedido {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+tr th {
+  color: #41584B;
+  background-color: #FF9B93;
+  border-color: #FFF3B2;
+  padding: 5px; }
+
+tr td {
+  color: #41584B;
+  background-color: #FFE0D8;
+  text-align: center;
+  padding: 5px; }
+
+#vaciar {
+  margin-left: 1%;
+  padding: 15%;
+  border-color: #fcd7ac;
+  background-color: #fccca9;
+  border-radius: 8px; }
+
+/* Sección del formulario de contacto*/
+.contacto {
+  height: 1fr;
+  padding-bottom: 10%;
+  background-color: #FFF3B2;
+  background-image: url(fondo/fondo.png);
+  background-position: bottom;
+  background-repeat: repeat-x; }
+
+.contacto1 {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  text-align: center; }
+
+.contacto2 {
+  padding-left: 5%; }
+
+.contacto3 {
+  padding-left: 5%; }
+
+.contacto3 img {
+  width: 300px;
+  margin-right: 20px; }
+
+.form {
+  color: #FF9A00;
+  background-color: #FFE0D8; }
+
+select, input, textarea {
+  color: #41584B;
+  background-color: #FFF3B2; }
+
+.tipos {
+  background-color: #FFF3B2; }
+
+.boton {
+  margin-left: 1%;
+  margin-top: 2%;
+  padding: 1%;
+  border-color: #fccca9;
+  background-color: #fcd7ac;
+  border-radius: 8px; }
+
+.boton:hover {
+  border-color: #FF9A00; }

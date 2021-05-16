@@ -1,0 +1,76 @@
+
+/* Seccion pie de pagina */
+
+
+footer {
+	display: flex;
+	flex-direction: column;
+	height: 20%;
+	color: $color-gris;
+	font-size: 10px;
+	background-color: $color-roscuro1;
+}
+
+.rrss {
+	display: grid;
+	background-color: $color-roscuro1;
+	grid-template-areas: 
+						"face insta mail";
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 100%; 
+	justify-items: center;
+	img {
+		width: 25%;
+	}
+}
+
+
+@media (max-width: 780px) {
+	.rrss {
+		display: grid;
+		background-color: $color-roscuro1;
+		grid-template-areas: 
+						"face"
+						"insta"
+						" mail";
+		grid-template-columns: 100%;
+		grid-template-rows: 1fr 1fr 1fr; 
+		justify-items: start;
+		padding-left: 10%;
+	}
+}
+
+%Ordenar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	img{
+		width: 25%;
+		padding: 5%;
+	}
+	p{
+		padding-top: 5%;
+	}
+}
+
+.face {
+	grid-area: face;
+	@extend %Ordenar;
+}
+
+.insta {
+	grid-area: insta;
+	@extend %Ordenar;
+}
+
+.mail {
+	grid-area: mail;
+	@extend %Ordenar;
+}
+
+.derechos {
+	background-color: $color-roscuro1;
+	text-align: center;
+}
+
