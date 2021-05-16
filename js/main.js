@@ -83,8 +83,8 @@ $(document).ready(traerDatos);
 
 let baseDeProductos = []
 
-function traerDatos (){
-    fetch('js/json.json')
+async function traerDatos (){
+    await fetch('js/json.json')
     .then(res => res.json())
     .then(res =>{
         console.log(res)
@@ -92,12 +92,13 @@ function traerDatos (){
             let nuevoElemento = {
                 sabor: element.sabor,
                 precio: element.precio,
-                imagen: element.imagen,
+                imagen: element.url,
                 cantidad: element.cantidad,
             }
            baseDeProductos.push(nuevoElemento);
         })
         console.log(baseDeProductos);     
+        console.log(baseDeProductos[1].imagen)
         colocarProductos();   
     }) 
 }
@@ -133,10 +134,11 @@ function colocarProductos (){
         carrito = [];
     }
 
-    $("#vaciar").hide()
+    $("#vaciar").hide();
+
+    controlCarrito();
 }
 
-$(document).ready(controlCarrito);
 
 function controlCarrito() {
 
