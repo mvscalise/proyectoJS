@@ -60,7 +60,8 @@ img {
       padding-top: 20px;
       text-decoration: none;
       font-size: 17px;
-      padding-left: 5px; }
+      padding-left: 5px;
+      color: #FF9B93; }
 
 /* Seccion pie de pagina */
 footer {
@@ -246,12 +247,19 @@ h3 {
   position: relative;
   grid-template-columns: 100%;
   grid-template-rows: 10% 50% 10% 20%;
-  align-items: center; }
+  justify-items: center; }
   .producto h2 {
     text-align: center;
     padding-top: 10px; }
   .producto p {
     text-align: center; }
+
+#imgcard {
+  width: 150px;
+  border-radius: 10%;
+  filter: drop-shadow(10px 10px 5px rgba(0, 0, 0, 0.5));
+  margin-bottom: 2%;
+  padding-top: 5%; }
 
 .botones {
   display: flex;

@@ -90,12 +90,12 @@ class Cupcake {
 // Se crean los objetos de manera individual para tener mas orden en el codigo
 //
 
-const saborChoco = new Cupcake("chocochips", precios[0], "multimedia/choco.jpg", 0);
-const saborBrownie = new Cupcake("brownie", precios[1], 'multimedia/brownie.jpg',0);
-const saborLimon = new Cupcake("limon", precios[2], 'multimedia/limon.jpg',0);
-const saborZanahoria = new Cupcake("zanahoria", precios[3], 'multimedia/zanahoria.jpg',0);
-const saborOreo = new Cupcake("oreo", precios[4], 'multimedia/oreo.jpg',0);
-const saborRed = new Cupcake("velvet", precios[5], "multimedia/red.jpg",0);
+const saborChoco = new Cupcake("chocochips", precios[0], "multimedia/choco.png", 0);
+const saborBrownie = new Cupcake("brownie", precios[1], 'multimedia/brownie.png',0);
+const saborLimon = new Cupcake("limon", precios[2], 'multimedia/limon.png',0);
+const saborZanahoria = new Cupcake("zanahoria", precios[3], 'multimedia/carrot.png',0);
+const saborOreo = new Cupcake("oreo", precios[4], 'multimedia/oreo.png',0);
+const saborRed = new Cupcake("velvet", precios[5], "multimedia/red.png",0);
 
 let baseDeProductos = [saborChoco, saborBrownie, saborLimon, saborZanahoria, saborOreo, saborRed];
 let acumuladorCard = [];
@@ -120,7 +120,7 @@ function colocarProductos (){
         acumuladorCard += 
         `<div class="col-sm-12 col-md-6 col-lg-4 producto">
             <h2 class="card-title"> ${baseDeProductos[i].sabor} </h2>
-            <img src="${baseDeProductos[i].imagen}" width="200px">
+            <img id= "imgcard" src="${baseDeProductos[i].imagen}">
             <p class="card-text text-center"> $${baseDeProductos[i].precio}</p>
             <div class = "botones">
                 <button id = "agregar" class = "boton" onclick="agregarAlPedido(${i})"> Agregar </button>
