@@ -72,41 +72,36 @@ function fijarMenu() {
 // Codigo asosiado a la seccion de pedidos
 ///
 
-const precios = [500,700,450,450,500,650];
-
-// Creacion de objetos con los productos
-
-class Cupcake {
-    constructor (sabor, precio, imagen, cantidad){
-        this.sabor = sabor;
-        this.precio = precio;  
-        this.imagen = imagen;
-        this.cantidad = cantidad;
-    }
-
-}
-
-//
-// Se crean los objetos de manera individual para tener mas orden en el codigo
-//
-
-const saborChoco = new Cupcake("chocochips", precios[0], "multimedia/choco.png", 0);
-const saborBrownie = new Cupcake("brownie", precios[1], 'multimedia/brownie.png',0);
-const saborLimon = new Cupcake("limon", precios[2], 'multimedia/limon.png',0);
-const saborZanahoria = new Cupcake("zanahoria", precios[3], 'multimedia/carrot.png',0);
-const saborOreo = new Cupcake("oreo", precios[4], 'multimedia/oreo.png',0);
-const saborRed = new Cupcake("velvet", precios[5], "multimedia/red.png",0);
-
-let baseDeProductos = [saborChoco, saborBrownie, saborLimon, saborZanahoria, saborOreo, saborRed];
 let acumuladorCard = [];
 
-$(document).ready(colocarProductos);
+$(document).ready(traerDatos);
 
 /**
  * Funcion para agregar las cards al html apartir del array baseDeProductos 
  * @param {} () no aplica parametro ya que se inicia con el onload
  */
 
+let baseDeProductos = []
+
+function traerDatos (){
+    fetch('js/json.json')
+    .then(res => res.json())
+    .then(res =>{
+        console.log(res)
+        res.forEach(element=>{
+            let nuevoElemento = {
+                sabor: element.sabor,
+                precio: element.precio,
+                imagen: element.imagen,
+                cantidad: element.cantidad,
+            }
+           baseDeProductos.push(nuevoElemento);
+        })
+        console.log(baseDeProductos);     
+        colocarProductos();   
+    }) 
+}
+   
 
 function colocarProductos (){
 
