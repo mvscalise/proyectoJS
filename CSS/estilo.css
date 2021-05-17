@@ -17,7 +17,7 @@ img {
   width: 100%;
   display: block;
   background-color: #FFF3B2;
-  z-index: 99999;
+  z-index: 5000;
   padding-bottom: 5px; }
 
 .sticky + .main {
@@ -41,16 +41,15 @@ img {
 #navbar {
   overflow: hidden;
   background-color: #FFF3B2;
-  z-index: 99999;
   width: 100%;
   top: 0;
   left: 0; }
 
 .menu {
   display: flex;
+  width: 100%;
   flex-direction: row;
-  justify-content: space-around;
-  margin: 0px; }
+  justify-content: space-around; }
   .menu div {
     list-style: none; }
     .menu div a {

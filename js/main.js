@@ -24,9 +24,9 @@ $("#pedido").click( function (e) {
     e.preventDefault()
 
     $('html, body').animate({
-        scrollTop: $(".hijo1").offset().top}, 1000)
+       scrollTop: $(".hijo1").offset().top}, 1000)
 
-    seleccionador(".pedido")
+   seleccionador(".pedido")
 })
 
 $("#contacto").click( function (e) {
@@ -52,12 +52,11 @@ function seleccionador(clase) {
     })
 }
 
-
 // Codigo para fijar el menu
 window.onscroll = function() {fijarMenu()};
 
 let navbar = document.getElementById("navbar");
-var sticky = navbar.offsetTop;
+let sticky = navbar.offsetTop;
 
 function fijarMenu() {
   if (window.pageYOffset >= sticky) {
