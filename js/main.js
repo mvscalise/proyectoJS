@@ -134,6 +134,7 @@ function colocarProductos (){
     }
 
     $("#vaciar").hide();
+    $("#wsp").hide()
 
     controlCarrito();
 }
@@ -224,12 +225,14 @@ function conteoPedido(pos){
 
 $('#bloquePedido').mouseout(function (){
     $("#vaciar").hide()
+    $("#wsp").hide()
 })
 
 
 $("#bloquePedido").mouseover(function (){
 
     $("#vaciar").show()
+    $("#wsp").show()
     $("#vaciar").click(function () {
         localStorage.clear();
         baseDeProductos.forEach(element => {
@@ -239,10 +242,8 @@ $("#bloquePedido").mouseover(function (){
             conteoPedido(element);
         });
         carrito = []
-        pedidoTotal();
-        
-    })
-    
+        pedidoTotal();   
+    })   
 })
 
 
@@ -260,12 +261,31 @@ function pedidoTotal() {
     baseDeProductos.forEach(element =>
         cantidadCupcakes = cantidadCupcakes + element.cantidad)  
       
-    $("#resumen").html(`Tu pedido es de ${cantidadCupcakes} cupcakes por un total de $${costoDelPedido}`)
+    $("#resumen").html(`Tu pedido es de ${cantidadCupcakes} cupcakes por un total de $${costoDelPedido}`);
+    $("#wsp").show();
 }
 
 $("#pedidoTotal").click(function (){
     pedidoTotal();
 })
+
+$("#wsp").click(function (){
+    enviarPedido();
+})
+
+
+// Funcion para agregar API de Whatsapp
+function enviarPedido () {
+    let mostrar = [ ];
+    baseDeProductos.forEach(element=> {
+        if(element.cantidad > 0){
+            aux = element.sabor + " " + element.cantidad;
+            mostrar.push(aux);
+        }
+    })
+    window.location.href=`https://api.whatsapp.com/send/?phone=56945820564&text=Hola!! deseo hacer un pedido: ${mostrar}`
+}
+
 
       
 ///

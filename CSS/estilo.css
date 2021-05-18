@@ -296,12 +296,15 @@ tr td {
   text-align: center;
   padding: 5px; }
 
-#vaciar {
+#vaciar, #wsp {
   margin-left: 1%;
   padding: 15%;
   border-color: #fcd7ac;
   background-color: #fccca9;
   border-radius: 8px; }
+
+#resumen {
+  text-align: center; }
 
 /* Sección del formulario de contacto*/
 .contacto {
