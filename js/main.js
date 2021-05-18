@@ -38,6 +38,8 @@ $("#contacto").click( function (e) {
     seleccionador(".contactoI")
 })
 
+
+// Codigo para resaltar la opcion del menu
 function seleccionador(clase) {
     $(clase).css({
         "background-color": "#FF9B93",
@@ -82,11 +84,11 @@ $(document).ready(traerDatos);
 
 let baseDeProductos = []
 
+// Funcion para traer los datos del .json y crear array baseDeProductos
 async function traerDatos (){
     await fetch('js/json.json')
     .then(res => res.json())
     .then(res =>{
-        console.log(res)
         res.forEach(element=>{
             let nuevoElemento = {
                 sabor: element.sabor,
@@ -95,9 +97,7 @@ async function traerDatos (){
                 cantidad: element.cantidad,
             }
            baseDeProductos.push(nuevoElemento);
-        })
-        console.log(baseDeProductos);     
-        console.log(baseDeProductos[1].imagen)
+        })    
         colocarProductos();   
     }) 
 }
@@ -139,6 +139,7 @@ function colocarProductos (){
 }
 
 
+//Funcion que va mostrando el pedido 
 function controlCarrito() {
 
         baseDeProductos.forEach(element => {
