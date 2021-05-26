@@ -73,6 +73,20 @@ function fijarMenu() {
 // Codigo asosiado a la seccion de pedidos
 ///
 
+
+/**
+ * Creacion del Objeto
+ */
+
+class CupCake {
+    constructor(sabor, precio, imagen, cantidad) {
+        this.sabor = sabor;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.cantidad = cantidad;
+    }
+}
+
 let acumuladorCard = [];
 
 $(document).ready(traerDatos);
@@ -90,14 +104,15 @@ async function traerDatos (){
     .then(res => res.json())
     .then(res =>{
         res.forEach(element=>{
-            let nuevoElemento = {
-                sabor: element.sabor,
-                precio: element.precio,
-                imagen: element.url,
-                cantidad: element.cantidad,
-            }
+            let nuevoElemento = new CupCake (
+                element.sabor,
+                element.precio,
+                element.url,
+                element.cantidad,
+            )
            baseDeProductos.push(nuevoElemento);
-        })    
+        })   
+        console.log(baseDeProductos) 
         colocarProductos();   
     }) 
 }
