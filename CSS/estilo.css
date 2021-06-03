@@ -296,7 +296,7 @@ tr td {
   text-align: center;
   padding: 5px; }
 
-#vaciar, #wsp {
+#vaciar, #mercadoPago {
   margin-left: 1%;
   padding: 15%;
   border-color: #fcd7ac;
@@ -334,9 +334,12 @@ tr td {
   color: #FF9A00;
   background-color: #FFE0D8; }
 
-select, input, textarea {
+select, input, textarea, .boton {
   color: #41584B;
   background-color: #FFF3B2; }
+
+select {
+  width: 70%; }
 
 .tipos {
   background-color: #FFF3B2; }
@@ -351,3 +354,7 @@ select, input, textarea {
 
 .boton:hover {
   border-color: #FF9A00; }
+
+#dogChef {
+  width: 10%;
+  position: relative; }

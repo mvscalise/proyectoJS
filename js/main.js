@@ -1,5 +1,5 @@
 //
-// Codigo para navegacion de la pagina 
+// Seccion para navegacion de la pagina 
 //
 
 $("#index").click( function (e) {
@@ -68,14 +68,25 @@ function fijarMenu() {
   }
 }
 
+//
+// Iniciando variables
+//
+
+let acumuladorCard = [];
+let baseDeProductos = [];
+let productosCarrito = [];
+let textoPrecio = "";
+let textoCantidad = "";
+let i = 0;
+
 
 ///
-// Codigo asosiado a la seccion de pedidos
+// Codigo asociado a la seccion de pedidos
 ///
 
 
 /**
- * Creacion del Objeto
+ * Declaracion de Objeto
  */
 
 class CupCake {
@@ -87,16 +98,8 @@ class CupCake {
     }
 }
 
-let acumuladorCard = [];
-
 $(document).ready(traerDatos);
 
-/**
- * Funcion para agregar las cards al html apartir del array baseDeProductos 
- * @param {} () no aplica parametro ya que se inicia con el onload
- */
-
-let baseDeProductos = []
 
 // Funcion para traer los datos del .json y crear array baseDeProductos
 async function traerDatos (){
@@ -112,11 +115,14 @@ async function traerDatos (){
             )
            baseDeProductos.push(nuevoElemento);
         })   
-        console.log(baseDeProductos) 
         colocarProductos();   
     }) 
 }
    
+/**
+ * Funcion para agregar las cards al html apartir del array baseDeProductos 
+ * @param {} () no aplica parametro ya que se inicia con el onload
+ */
 
 function colocarProductos (){
 
@@ -149,7 +155,7 @@ function colocarProductos (){
     }
 
     $("#vaciar").hide();
-    $("#wsp").hide()
+    $("#mercadoPago").hide()
 
     controlCarrito();
 }
@@ -169,7 +175,6 @@ function controlCarrito() {
 
     let datos = document.getElementById("detallePedido");
     $(datos).html(detallePedido);
-
 }
 
 
@@ -179,11 +184,8 @@ function controlCarrito() {
  * @param {} i ingresa la posicion del objeto dentro del array baseDeProductos
  */
 
-let textoPrecio = "";
-let textoCantidad = "";
 
 function agregarAlPedido(i){
-
     baseDeProductos[i].cantidad++
     let pedido = document.getElementById(`${baseDeProductos[i].sabor}`);
     $(pedido).html(` Has pedido ${baseDeProductos[i].cantidad}`);
@@ -193,8 +195,7 @@ function agregarAlPedido(i){
     conteoPedido(baseDeProductos[i])
 
     localStorage.setItem("pedidoAlmacenado",JSON.stringify(baseDeProductos));
-    localStorage.setItem("carrito",JSON.stringify(carrito));
-    
+    localStorage.setItem("carrito",JSON.stringify(carrito)); 
 }
 
 /**
@@ -204,7 +205,7 @@ function agregarAlPedido(i){
  */
 
 function eliminarProducto(i){
-      
+
     aux = baseDeProductos[i].cantidad;
     
     if (aux == 0){
@@ -218,17 +219,15 @@ function eliminarProducto(i){
         precio = baseDeProductos[i].precio;
         let pos = carrito.indexOf(precio);
         carrito.splice(pos,1);
-
     }
 
     conteoPedido(baseDeProductos[i])
 
     localStorage.setItem("pedidoAlmacenado",JSON.stringify(baseDeProductos));
-    localStorage.setItem("carrito",JSON.stringify(carrito));
-  
+    localStorage.setItem("carrito",JSON.stringify(carrito));  
 }
 
-
+// Funcion que va modificand el resumen de pedido
 function conteoPedido(pos){
     textoPrecio = "#td" + (pos.sabor) + "P";
     textoCantidad = "#td" + (pos.sabor) + "C";
@@ -237,34 +236,33 @@ function conteoPedido(pos){
     $(textoCantidad).html(pos.cantidad); 
 }
 
-
+// Ocultar botones de vaciar carrito
 $('#bloquePedido').mouseout(function (){
     $("#vaciar").hide()
-    $("#wsp").hide()
 })
 
-
+// Funcion para mostrar botones de  vaciar carrito
+// Se incluye codigo donde se vacia el carrito y con este el Storage
 $("#bloquePedido").mouseover(function (){
 
     $("#vaciar").show()
-    $("#wsp").show()
     $("#vaciar").click(function () {
         localStorage.clear();
+        productosCarrito = [];
         baseDeProductos.forEach(element => {
             element.cantidad = 0;
             let pedido = document.getElementById(`${element.sabor}`);
             $(pedido).html(` Has pedido ${element.cantidad}`);
             conteoPedido(element);
-        });
-        carrito = []
+        })
+        carrito = [];
         pedidoTotal();   
+        $("#mercadoPago").hide();
     })   
 })
 
 
-let i = 0;
-
-
+// Funcion para totalizar pedido 
 function pedidoTotal() {
     let costoDelPedido = 0;
     let cantidadCupcakes = 0;
@@ -272,39 +270,63 @@ function pedidoTotal() {
     carrito.forEach(element =>
         costoDelPedido = costoDelPedido + element)
 
-
     baseDeProductos.forEach(element =>
         cantidadCupcakes = cantidadCupcakes + element.cantidad)  
       
     $("#resumen").html(`Tu pedido es de ${cantidadCupcakes} cupcakes por un total de $${costoDelPedido}`);
-    $("#wsp").show();
+    $("#mercadoPago").show();
 }
 
 $("#pedidoTotal").click(function (){
     pedidoTotal();
 })
 
-$("#wsp").click(function (){
+$("#mercadoPago").click(function (){
     enviarPedido();
 })
 
 
-// Funcion para agregar API de Whatsapp
-function enviarPedido () {
-    let mostrar = [ ];
-    baseDeProductos.forEach(element=> {
-        if(element.cantidad > 0){
-            aux = element.sabor + " " + element.cantidad;
-            mostrar.push(aux);
+// Aplicando MercadoPago
+
+async function enviarPedido () {
+    
+    baseDeProductos.forEach(element => {    
+        if (element.cantidad > 0){
+            productosCarrito.push(element);
         }
-    })
-    window.location.href=`https://api.whatsapp.com/send/?phone=56945820564&text=Hola!! deseo hacer un pedido: ${mostrar}`
+    });
+
+    const jsonMP = productosCarrito.map((element) => {
+        let nuevoElemento = {
+            title: element.sabor,
+            description: "producto",
+            picture_url: element.imagen,
+            category_id: "sin categoria",
+            quantity: element.cantidad,
+            currency_id: "CLP",
+            unit_price: Number(element.precio)
+        };
+        return nuevoElemento;
+      });
+
+    
+    if (productosCarrito.length > 0){
+        let data = await fetch ('https://api.mercadopago.com/checkout/preferences', {
+            method: 'POST', 
+            headers: {
+                "Authorization": "Bearer TEST-8957954100028902-060121-8ff2e0ccee29f17c7e1d0c4b07d423de-765799328"
+            },
+            body: JSON.stringify({items: jsonMP}),
+        });
+        let responseMP = await data.json();
+        window.open(responseMP.init_point, "ventana de pago");
+    } 
 }
 
 
       
 ///
-// Codigo asociado a la pagina de contacto
+// Codigo asociado a la seccion de contacto
 ///
 
 
@@ -313,7 +335,7 @@ function paginaDeContacto (){
 
     formulario.addEventListener("submit", (e) =>{
         e.preventDefault();
-        console.log('Has ingressado tu solicitud');
+        console.log('Has ingresado tu solicitud');
     })
 }    
 
@@ -323,21 +345,42 @@ function paginaDeContacto (){
  */
 
 function validarTexto(event) {
-    event.target.value
+
+    event.target.value;
+    let colocar = document.getElementById('validacionNombre');
+    $(colocar).html(``);
+
     if (event.which == 96 || event.which == 97 || event.which == 98 || event.which == 99 || event.which == 100 || event.which == 101 || event.which == 102 || event.which == 103 || event.which == 104 || event.which == 105 || event.which == 48 || event.which == 49 || event.which == 50 || event.which == 51 || event.which == 52 || event.which == 53 || event.which == 54 || event.which == 55 || event.which == 56 || event.which == 57){
-        alert("no puedes ingresar numeros")
-        console.log(event)
+        let nombreApellido = document.getElementById('texto');
+        $(colocar).html(`Recuerda que debes ingresar solo letras`);
         let array = Array.from(event.target.value);
         array.pop();
         array = array.join('');
-        let cambio = document.getElementById('texto');
-        cambio.value = array;
-        console.log(array)
+        nombreApellido.value = array;
     }
 }
+
+// Funcion para agregar API de Whatsapp
+function whatsApp () {
+    let nombreApellido = document.getElementById('texto');
+        window.location.href=`https://api.whatsapp.com/send/?phone=56945820564&text=Hola ${nombreApellido.value} !!!, En que podemos ayudarte?`    
+}
+
+$("#wsp").click(function (){
+    whatsApp();
+})
 
 $("#catChef").hide()
 
 $(".contacto").mouseover(function (){
     $("#catChef").fadeIn()
+    $(".contacto").mousemove(function (e){
+        let img = document.getElementById('dogChef');
+        document.onmousemove=function (e) {
+            img.style.left=e.clientX-80 + 'px';
+        }
+    }) 
 })
+
+
+
