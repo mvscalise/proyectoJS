@@ -274,11 +274,11 @@ function pedidoTotal() {
         cantidadCupcakes = cantidadCupcakes + element.cantidad)  
       
     $("#resumen").html(`Tu pedido es de ${cantidadCupcakes} cupcakes por un total de $${costoDelPedido}`);
-    $("#mercadoPago").show();
 }
 
 $("#pedidoTotal").click(function (){
     pedidoTotal();
+    $("#mercadoPago").show();
 })
 
 $("#mercadoPago").click(function (){
@@ -323,7 +323,6 @@ async function enviarPedido () {
     } 
 }
 
-
       
 ///
 // Codigo asociado a la seccion de contacto
@@ -344,21 +343,25 @@ function paginaDeContacto (){
  *  * @param {} () se activa al reconocer el evento
  */
 
-function validarTexto(event) {
+function validacionNombre(e) {
+    let key = e.keyCode || e.which;
+      tecla = String.fromCharCode(key).toLowerCase();
+      letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+      especiales = [8, 37, 39, 46];
+      tecla_especial = false;
 
-    event.target.value;
-    let colocar = document.getElementById('validacionNombre');
-    $(colocar).html(``);
+    for (let i in especiales) {
+      if (key == especiales[i]) {
+        tecla_especial = true;
+        break;
+      }
+    }
 
-    if (event.which == 96 || event.which == 97 || event.which == 98 || event.which == 99 || event.which == 100 || event.which == 101 || event.which == 102 || event.which == 103 || event.which == 104 || event.which == 105 || event.which == 48 || event.which == 49 || event.which == 50 || event.which == 51 || event.which == 52 || event.which == 53 || event.which == 54 || event.which == 55 || event.which == 56 || event.which == 57){
-        let nombreApellido = document.getElementById('texto');
-        $(colocar).html(`Recuerda que debes ingresar solo letras`);
-        let array = Array.from(event.target.value);
-        array.pop();
-        array = array.join('');
-        nombreApellido.value = array;
+    if (letras.indexOf(tecla) == -1 && !tecla_especial) {
+      return false;
     }
 }
+
 
 // Funcion para agregar API de Whatsapp
 function whatsApp () {
