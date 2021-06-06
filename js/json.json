@@ -2,36 +2,42 @@
       {
         "sabor": "chocochips",
         "precio": 500,
+        "descripcion": "Choco-chips",
         "url": "multimedia/choco.png",
         "cantidad": 0
       },
       {
         "sabor": "brownie",
         "precio": 700,
+        "descripcion": "Brownie",
         "url": "multimedia/brownie.png",
         "cantidad": 0
       },
       {
         "sabor": "limon",
         "precio": 450,
+        "descripcion": "Limón",
         "url": "multimedia/limon.png",
         "cantidad": 0
       },
       {
         "sabor": "zanahoria",
         "precio": 450,
+        "descripcion": "Zanahoria",
         "url": "multimedia/carrot.png",
         "cantidad": 0
       },
       {
         "sabor": "oreo",
         "precio": 500,
+        "descripcion": "Oreo",
         "url": "multimedia/oreo.png",
         "cantidad": 0
       },
       {
         "sabor": "red",
         "precio": 650,
+        "descripcion": "Red velvet",
         "url": "multimedia/red.png",
         "cantidad": 0
       }

@@ -44,6 +44,7 @@ function seleccionador(clase) {
     $(clase).css({
         "background-color": "#FF9B93",
         "color": "#41584B",
+        "border-radius": "5px",
     });
 
     $(clase).mouseout(function (){
@@ -90,9 +91,10 @@ let i = 0;
  */
 
 class CupCake {
-    constructor(sabor, precio, imagen, cantidad) {
+    constructor(sabor, precio, titulo, imagen, cantidad) {
         this.sabor = sabor;
         this.precio = precio;
+        this.titulo = titulo;
         this.imagen = imagen;
         this.cantidad = cantidad;
     }
@@ -110,6 +112,7 @@ async function traerDatos (){
             let nuevoElemento = new CupCake (
                 element.sabor,
                 element.precio,
+                element.descripcion,
                 element.url,
                 element.cantidad,
             )
@@ -135,9 +138,9 @@ function colocarProductos (){
      
         acumuladorCard += 
         `<div class="col-sm-12 col-md-6 col-lg-4 producto">
-            <h2 class="card-title"> ${baseDeProductos[i].sabor} </h2>
+            <h2 class="card-title"> ${baseDeProductos[i].titulo} </h2>
             <img id= "imgcard" src="${baseDeProductos[i].imagen}">
-            <p class="card-text text-center"> $${baseDeProductos[i].precio}</p>
+            <p class="card-text text-center"> CLP $${baseDeProductos[i].precio}</p>
             <div class = "botones">
                 <button id = "agregar" class = "boton" onclick="agregarAlPedido(${i})"> Agregar </button>
                 <button id = "borrar" class = "boton" onclick="eliminarProducto(${i})"> Eliminar </button>
@@ -167,7 +170,7 @@ function controlCarrito() {
         baseDeProductos.forEach(element => {
             detallePedido+= ` 
                        <tr>
-                            <td id= "td${element.sabor}" >${element.sabor}</td>
+                            <td id= "td${element.sabor}" >${element.titulo}</td>
                             <td id= "td${element.sabor}P">$ ${element.cantidad * element.precio}</td>
                             <td id= "td${element.sabor}C">${element.cantidad}</td>
                         </tr>`
@@ -315,6 +318,12 @@ async function enviarPedido () {
     }
 }
 
+// Funcion para agregar API de Whatsapp
+function whatsApp () {
+    let nombreApellido = document.getElementById('texto');
+        window.location.href=`https://api.whatsapp.com/send/?phone=56945820564&text=Hola !!!, Vi tus productos en la pagina de Lulu's Cupcake y estoy interesado en hacer un pedido`    
+}
+
 // Eventos con el usuario para tomar el pedido 
 $("#entregaPedido").hide();
 
@@ -336,11 +345,14 @@ $("#irMercadoPago").click(function(){
     enviarPedido();
 });
 
-      
+$("#wsp").click(function (){
+    whatsApp();
+})
+    
+
 ///
 // Codigo asociado a la seccion de contacto
 ///
-
 
 function paginaDeContacto (){
     let formulario = document.getElementById("formulario");
@@ -376,18 +388,9 @@ function validacionNombre(e) {
 }
 
 
-// Funcion para agregar API de Whatsapp
-function whatsApp () {
-    let nombreApellido = document.getElementById('texto');
-        window.location.href=`https://api.whatsapp.com/send/?phone=56945820564&text=Hola ${nombreApellido.value} !!!, En que podemos ayudarte?`    
-}
-
-$("#wsp").click(function (){
-    whatsApp();
-})
-
 $("#catChef").hide()
 
+// Funcion para mover imagen en seccion de contacto
 $(".contacto").mouseover(function (){
     $("#catChef").fadeIn()
     $(".contacto").mousemove(function (e){
