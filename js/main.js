@@ -320,7 +320,6 @@ async function enviarPedido () {
 
 // Funcion para agregar API de Whatsapp
 function whatsApp () {
-    let nombreApellido = document.getElementById('texto');
         window.location.href=`https://api.whatsapp.com/send/?phone=56945820564&text=Hola !!!, Vi tus productos en la pagina de Lulu's Cupcake y estoy interesado en hacer un pedido`    
 }
 
@@ -387,8 +386,6 @@ function validacionNombre(e) {
     }
 }
 
-
-$("#catChef").hide()
 
 // Funcion para mover imagen en seccion de contacto
 $(".contacto").mouseover(function (){
