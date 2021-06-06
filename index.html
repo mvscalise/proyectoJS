@@ -161,20 +161,35 @@
 								<br>
 								<br>
 								<br>
-								<button id = "mercadoPago" type="button" > Enviar Pedido </button>
+								<button id = "mercadoPago" type="button" >   Continuar con el pago  </button>
+
 							</div>
 
-							<div id="resumen">
+							<div id="resumen"> </div>
 								
-							</div>
-			
 						</div>
-						
-					</div>
-				
 				  
+					</div>
 				</div>
-				</div>
+
+				<div class="modal fade" id="entregaPedido" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+					  <div id="ventana" class="modal-content">
+						<div class="modal-header">
+						  <h5 class="modal-title" id="exampleModalLabel">Detalle de entrega</h5>
+						  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+						  Te comentamos que en estos momentos no nos encontramos haciendo despachos, puedes continuar con tu pago para retirar en tienda o contactanos a nuestro WhatsApp para mas información.
+						</div>
+						<div class="modal-footer">
+						  <button type="button" id="cerrarInfo" class="boton" data-bs-dismiss="modal">Volver</button>
+						  <button type="button" id = "wsp" class="boton"> Contáctanos </button>
+						  <button type="button" id="irMercadoPago" class="boton">Continuar con el pago</button>
+						</div>
+					  </div>
+					</div>
+				  </div>
 				
 			
 			</section>
@@ -226,7 +241,7 @@
 								
 								<input type="submit" name="enviar" value="Enviar consulta" class="boton">
 								
-								<button id = "wsp" type="button" class="boton"> Contactanos directamente a nuestro WhatsApp</button>
+								<button id = "wsp" type="button" class="boton"> Ya hiciste tu pago? Contáctanos acá!!</button>
 
 							</form>
 	

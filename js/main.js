@@ -276,16 +276,6 @@ function pedidoTotal() {
     $("#resumen").html(`Tu pedido es de ${cantidadCupcakes} cupcakes por un total de $${costoDelPedido}`);
 }
 
-$("#pedidoTotal").click(function (){
-    pedidoTotal();
-    $("#mercadoPago").show();
-})
-
-$("#mercadoPago").click(function (){
-    enviarPedido();
-})
-
-
 // Aplicando MercadoPago
 
 async function enviarPedido () {
@@ -320,8 +310,31 @@ async function enviarPedido () {
         });
         let responseMP = await data.json();
         window.open(responseMP.init_point, "ventana de pago");
-    } 
+    } else {
+        $("#resumen").html( 'No tienes ningun producto agregado');
+    }
 }
+
+// Eventos con el usuario para tomar el pedido 
+$("#entregaPedido").hide();
+
+$("#pedidoTotal").click(function (){
+    pedidoTotal();
+    $("#mercadoPago").show();
+})
+
+$("#mercadoPago").click(function (){
+    pedidoTotal();
+    $("#entregaPedido").modal()
+})
+
+$("#cerrarInfo").click(function(){
+    $("#entregaPedido").modal('hide');
+});
+
+$("#irMercadoPago").click(function(){
+    enviarPedido();
+});
 
       
 ///
@@ -347,7 +360,7 @@ function validacionNombre(e) {
     let key = e.keyCode || e.which;
       tecla = String.fromCharCode(key).toLowerCase();
       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
-      especiales = [8, 37, 39, 46];
+      especiales = [8, 37, 39, 46, 222];
       tecla_especial = false;
 
     for (let i in especiales) {

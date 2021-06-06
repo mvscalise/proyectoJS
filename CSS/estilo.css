@@ -296,7 +296,15 @@ tr td {
   text-align: center;
   padding: 5px; }
 
-#vaciar, #mercadoPago {
+#vaciar {
+  margin-left: 1%;
+  padding-left: 15%;
+  padding-right: 15%;
+  border-color: #fcd7ac;
+  background-color: #fccca9;
+  border-radius: 8px; }
+
+#mercadoPago {
   margin-left: 1%;
   padding: 15%;
   border-color: #fcd7ac;
@@ -305,6 +313,11 @@ tr td {
 
 #resumen {
   text-align: center; }
+
+#ventana {
+  background-color: #FFF3B2;
+  margin-top: 10%;
+  position: absolute; }
 
 /* Sección del formulario de contacto*/
 .contacto {
